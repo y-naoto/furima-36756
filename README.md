@@ -5,7 +5,7 @@
 |-------------------|--------------|----------------|
 | nickname          | string       | null:false     | ニックネーム
 | email             | string       | null:false     | メルアド
-| password          | string       | null:false     | パスワード
+| encrypted_password| string       | null:false     | パスワード
 | firstname_kannji  | string       | null:false     | 苗字 漢字
 | lastname_kannji   | string       | null:false     | 名前 漢字
 | firstname_katakana| string       | null:false     | 苗字 カタカナ
