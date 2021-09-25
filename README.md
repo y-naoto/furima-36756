@@ -40,7 +40,7 @@
 -belongs_to : user
 -has_one :send
 
-## sendテーブル
+## sendsテーブル
 | Colum             | Type         | Options        |
 |-------------------|--------------|----------------|
 | post_code         | string       | null:false     | 郵便番号
@@ -48,6 +48,6 @@
 | city              | string       | null:false     | 市町村
 | city_address      | string       | null:false     | 番地
 | building_name     | string       |                | 建物名
-| phone_number      | integer      | null:false     | 電話番号
+| phone_number      | string       | null:false     | 電話番号
 | buy_item          | references   | foreign_key: true, null:false    |
 -belongs_to :buy_item
