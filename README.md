@@ -18,24 +18,23 @@
 | Colum             | Type         | Options        |
 |-------------------|--------------|----------------|
 | item_name         | string       | null:false     | 商品名
-| seller            | string       | null:false     | 販売者
 | item_explanation  | text         | null:false     | 商品説明
 | category_id       | integer      | null:false     | カテゴリー
-| sendmany_id       | integer      | null:false     | 送料
+| send_money_id     | integer      | null:false     | 送料
 | todoufukenn_id    | integer      | null:false     | 配送元（都道府県）
-| deriveryday_id    | integer      | null:false     | 配送日数
+| delivery_day_id   | integer      | null:false     | 配送日数
 | price             | integer      | null:false     | 価格
-| user              | references, foreign_key: true | null:false     |
+| user              | references   |foreign_key: true, null:false     |
 -belongs_to : user
 -has_one : buy_item
 
 
 ## buy_itemsテーブル
 
-| Colum             | Type                          | Options        |
-|-------------------|-------------------------------|----------------|
-| user              | references, foreign_key: true | null:false     |
-| item              | references, foreign_key: true | null:false     |
+| Colum             | Type       | Options                           |
+|-------------------|------------|-----------------------------------|
+| user              | references | foreign_key: true, null:false     |
+| item              | references | foreign_key: true, null:false     |
 
 -belongs_to : item
 -belongs_to : user
@@ -50,5 +49,5 @@
 | city_address      | string       | null:false     | 番地
 | building_name     | string       |                | 建物名
 | phone_number      | integer      | null:false     | 電話番号
-| buy_item          | references, foreign_key: true | null:false      |
+| buy_item          | references   | foreign_key: true, null:false    |
 -belongs_to :buy_item
