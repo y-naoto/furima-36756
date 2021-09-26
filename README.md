@@ -38,9 +38,9 @@
 
 -belongs_to : item
 -belongs_to : user
--has_one :send
+-has_one : delivery
 
-## sendsテーブル
+## deliveriesテーブル
 | Colum             | Type         | Options        |
 |-------------------|--------------|----------------|
 | post_code         | string       | null:false     | 郵便番号
