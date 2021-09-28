@@ -39,12 +39,6 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include("Password can't be blank")
     end
-    it 'nicknameが空では登録できない' do
-    end
-    it '重複したemailが存在する場合登録できない' do
-    end
-    it 'passwordが5文字以下では登録できない' do
-    end
     it 'firstname_kannjiがない場合は登録できないこと' do
       @user.firstname_kannji = ''
       @user.valid?
@@ -69,6 +63,20 @@ RSpec.describe User, type: :model do
       @user.birthday = ''
       @user.valid?
       expect(@user.errors.full_messages).to include("Birthday can't be blank")
+    end
+    it 'passwordは英字のみでは登録できない' do
+    end
+    it 'passwordは数字のみでは登録できない' do
+    end
+    it 'passwordは全角文字を含む場合登録できない' do
+    end
+    it 'firstname_kannjiは半角文字が含まれていると登録できない' do
+    end
+    it 'lastname_kannjiは半角文字が含まれていると登録できない' do
+    end
+    it 'firstname_katakanaは平仮名・漢字・英数字・記号が含まれていると登録できない' do
+    end
+    it 'lastname_katakanaは平仮名・漢字・英数字・記号が含まれていると登録できない' do
     end
   end
 end

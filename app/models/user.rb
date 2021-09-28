@@ -5,12 +5,14 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :nickname, presence: true
-  validates :firstname_kannji, presence: true
-  validates :lastname_kannji, presence: true
-  validates :firstname_katakana, presence: true
-  validates :lastname_katakana, presence: true
+  validates :firstname_kannji, presence: true, format: {with: /\A[ぁ-んァ-ン一-龥]/ }
+  validates :lastname_kannji, presence: true, format: {with: /\A[ぁ-んァ-ン一-龥]/ }
+  validates :firstname_katakana, presence: true, format: {with: /\A[ァ-ヶー－]+\z/ }
+  validates :lastname_katakana, presence: true, format: {with: /\A[ァ-ヶー－]+\z/ }
   validates :birthday, presence: true
+  VALID_PASSWORD_REGEX = /\A[a-z0-9]+\z/i
+  validates :password, format: { with: VALID_PASSWORD_REGEX }
 
-  has_many :items
-  has_many :buy_items
+  #has_many :items
+  #has_many :buy_items
 end
