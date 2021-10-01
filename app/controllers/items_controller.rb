@@ -3,6 +3,7 @@ class ItemsController < ApplicationController
   end
 
   def new
+    @item = Item.new
   end
 
   def create
@@ -10,14 +11,13 @@ class ItemsController < ApplicationController
     if @item.save
        redirect_to root_path
     else 
-      render :new
+       render :new
     end
   end 
 
   private
-
   def item_params
-    params.require(:item).permit(:content, :image).merge(user_id: current_user.id)
+    params.require(:item).permit(:item_name, :item_explanation, :condition_id, :category_id, :send_money_id, :todoufukenn_id, :delivery_day_id, :price, :image).merge(user_id: current_user.id)
   end
 
 end
