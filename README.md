@@ -20,6 +20,7 @@
 | item_name         | string       | null:false     | 商品名
 | item_explanation  | text         | null:false     | 商品説明
 | category_id       | integer      | null:false     | カテゴリー
+| condition_id      | integer      | null:false     | 状態
 | send_money_id     | integer      | null:false     | 送料
 | todoufukenn_id    | integer      | null:false     | 配送元（都道府県）
 | delivery_day_id   | integer      | null:false     | 配送日数
