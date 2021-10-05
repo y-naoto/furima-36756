@@ -1,5 +1,8 @@
 FactoryBot.define do
   factory :item do
+    after(:build) do |item|
+      item.image.attach(io: File.open('public/images/test_image.png'), filename: 'flag.png')
+    end
     item_name     {'sample'}
     item_explanation  {'aaaaa'}
     category_id       {2}

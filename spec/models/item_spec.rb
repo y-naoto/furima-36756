@@ -5,64 +5,80 @@ RSpec.describe Item, type: :model do
    end
 
   describe '商品出品機能' do
-      
-    it 'item_nameがない場合は登録できないこと' do
-      @item.item_name = nil
-      @item.valid?
-      expect(@item.errors[:item_name]).to include("can't be blank")
+
+    context '正常系' do
+      it '全ての項目が入力されていれば登録される' do
+        expect(@item).to be_valid
+      end
+
+        context '異常系' do
+          it '商品名がない場合は登録できないこと' do
+            @item.item_name = nil
+            @item.valid?
+            expect(@item.errors[:item_name]).to include("can't be blank")
+          end
+          it '商品説明がない場合は登録できないこと' do
+            @item.item_explanation = ''
+            @item.valid?
+            expect(@item.errors[:item_explanation]).to include("can't be blank")
+          end
+          it 'カテゴリーがない場合は登録できないこと' do
+            @item.category_id = 0
+            @item.valid?
+            expect(@item.errors[:category_id]).to include("must be other than 0")
+          end
+          it '配送料の負担がない場合は登録できないこと' do
+            @item.send_money_id = 0
+            @item.valid?
+            expect(@item.errors[:send_money_id]).to include("must be other than 0")
+          end
+          it '配送先がない場合は登録できないこと' do
+            @item.todoufukenn_id = 0
+            @item.valid?
+            expect(@item.errors[:todoufukenn_id]).to include("must be other than 0")
+          end
+          it '商品の状態がなければ登録できない' do
+            @item.condition_id = 0
+            @item.valid?
+            expect(@item.errors[:condition_id]).to include("must be other than 0")
+          end
+          it '配送日数がない場合は登録できないこと' do
+            @item.delivery_day_id = 0
+            @item.valid?
+            expect(@item.errors[:delivery_day_id]).to include("must be other than 0")
+          end
+          it '価格がからだと登録できない' do
+            @item.price = ''
+            @item.valid?
+            expect(@item.errors[:price]).to include("can't be blank")
+          end
+          it '価格が300円未満だと登録できない' do
+            @item.price = 299
+            @item.valid?
+            expect(@item.errors[:price]).to include("must be greater than or equal to 300")
+          end
+          it '価格が10,000,000円以上だと登録できない' do
+            @item.price = 10000000
+            @item.valid?
+            expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
+          end
+          it '価格が文字だと登録できない' do
+            @item.price = 'aaaaa'
+            @item.valid?
+            expect(@item.errors[:price]).to include("is not a number")
+          end
+          it 'userが紐付いていなければ出品できない' do
+            @item.user = nil
+            @item.valid?
+            expect(@item.errors.full_messages).to include("User must exist")
+          end
+
+        end
     end
   end
-  it "item_explanationがない場合は登録できないこと" do
-    @item.item_explanation = nil
-    @item.valid?
-    expect(@item.errors[:item_explanation]).to include("can't be blank")
-  end
-
-  #3
-  it "category_idがない場合は登録できないこと" do
-    @item.category_id = nil
-    @item.valid?
-    expect(@item.errors[:category_id]).to include("can't be blank")
-  end
-
-  #4
-  it "send_money_idがない場合は登録できないこと" do
-    @item.send_money_id = nil
-    @item.valid?
-    expect(@item.errors[:send_money_id]).to include("can't be blank")
-  end
-
-  #5
-  it "todoufukenn_idがない場合は登録できないこと" do
-    @item.todoufukenn_id = nil
-    @item.valid?
-    expect(@item.errors[:todoufukenn_id]).to include("can't be blank")
-  end
-
-  #6
-  it "delivery_day_idがない場合は登録できないこと" do
-    @item.delivery_day_id = nil
-    @item.valid?
-    expect(@item.errors[:delivery_day_id]).to include("can't be blank")
-  end
-
-  #7
-  it "priceがない場合は登録できないこと" do
-    @item.price = nil
-    @item.valid?
-    expect(@item.errors[:price]).to include("price is not a number")
-  end
+  
 
 end
 
 
-    # 全ての条件を入力すると登録ができる
-    # 画像がなければ登録できない
-    # 商品名がなければ登録できない
-    # 価格がなければ登録できない
-    # 商品の説明がなければ登録できない
-    # カテゴリーがなければ登録できない
-    # 商品の状態がなければ登録できない
-    # 配送料の負担がなければ登録できない
-    # 発送元の地域がなければ登録できない
-    # 発送までの日数がなければ登録できない
+   
