@@ -9,7 +9,7 @@ class Item < ApplicationRecord
   validates :send_money_id, presence: true
   validates :todoufukenn_id, presence: true 
   validates :delivery_day_id, presence: true
-  validates :price, presence: true
+  # validates :price, presence: true、numericality:{only_integer:true,greater_than_or_equal_to:300,less_than_or_equal_to:9999999}
   belongs_to :user
   # has_one :buy_item
   has_one_attached :image
