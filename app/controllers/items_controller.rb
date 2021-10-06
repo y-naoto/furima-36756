@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index, :show]
   def index
     @item =Item.includes(:user)
   end
@@ -11,7 +11,7 @@ class ItemsController < ApplicationController
   def show
     @item =Item.find(params[:id])
   end
-  
+
   def create
     @item = Item.new(item_params)
     if @item.save
