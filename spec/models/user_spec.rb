@@ -37,7 +37,7 @@ RSpec.describe User, type: :model do
       @user.password = 'a1a1'
       @user.password_confirmation = 'a1a1'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
+      expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
     end
     it 'firstname_kannjiがない場合は登録できないこと' do
       @user.firstname_kannji = ''
@@ -66,41 +66,41 @@ RSpec.describe User, type: :model do
     end
     it 'passwordは英字のみでは登録できない' do
       @user.password = 'aaaaaa'
-        @user.password_confirmation = 'aaaaaa'
-        @user.valid?
-        expect(@user.errors.full_messages).to include("Password is invalid")
+      @user.password_confirmation = 'aaaaaa'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('Password is invalid')
     end
     it 'passwordは数字のみでは登録できない' do
       @user.password = '222222'
-        @user.password_confirmation = '222222'
-        @user.valid?
-        expect(@user.errors.full_messages).to include("Password is invalid")
+      @user.password_confirmation = '222222'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('Password is invalid')
     end
     it 'passwordは全角文字を含む場合登録できない' do
       @user.password = 'ＡＢｃ１'
-        @user.password_confirmation = 'ＡＢｃ１'
-        @user.valid?
-        expect(@user.errors.full_messages).to include("Password is invalid")
+      @user.password_confirmation = 'ＡＢｃ１'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('Password is invalid')
     end
     it 'firstname_kannjiは半角文字が含まれていると登録できない' do
       @user.firstname_kannji = 'あAｱ'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Firstname kannji is invalid")
+      expect(@user.errors.full_messages).to include('Firstname kannji is invalid')
     end
     it 'lastname_kannjiは半角文字が含まれていると登録できない' do
       @user.lastname_kannji = 'あAｱ'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Lastname kannji is invalid")
+      expect(@user.errors.full_messages).to include('Lastname kannji is invalid')
     end
     it 'firstname_katakanaは平仮名・漢字・英数字・記号が含まれていると登録できない' do
       @user.firstname_katakana = 'あ亜ｱ1@'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Firstname katakana is invalid")
+      expect(@user.errors.full_messages).to include('Firstname katakana is invalid')
     end
     it 'lastname_katakanaは平仮名・漢字・英数字・記号が含まれていると登録できない' do
       @user.lastname_katakana = 'あ亜ｱ1@'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Lastname katakana is invalid")
+      expect(@user.errors.full_messages).to include('Lastname katakana is invalid')
     end
   end
 end
