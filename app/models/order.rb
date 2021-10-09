@@ -4,7 +4,7 @@ class Order
   with_options  presence: true do
   validates :city
   validates :city_address
-  validates :phone_number, format: { with: /\d{10,11}/}, length: {maximum: 11}
+  validates :phone_number, format: { with: /\A\d{10,11}\z/} 
   validates :post_code, format: { with:/\A\d{3}[-]\d{4}\z/ }
   validates :todoufukenn_id, numericality: { other_than: 1}
   validates :user_id
