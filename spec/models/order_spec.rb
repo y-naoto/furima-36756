@@ -60,6 +60,21 @@ RSpec.describe Order, type: :model do
         @order.valid?
         expect(@order.errors.full_messages).to include("Phone number is too long (maximum is 11 characters)")
       end
+      it 'phone_numberが9桁以下では保存できないこと' do
+        @order.phone_number = '11111111'
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Phone number is invalid")
+      end
+      it 'phone_numberが12桁以上では保存できないこと' do
+        @order.phone_number = '1111111111111'
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Phone number is too long (maximum is 11 characters)")
+      end
+      it '電話番号に半角数字以外が含まれている場合は保存できないこと' do
+        @order.phone_number = '1a111111111'
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Phone number is invalid")
+      end
       it 'userが紐付いていないと保存できないこと' do
         @order.user_id = nil
         @order.valid?
